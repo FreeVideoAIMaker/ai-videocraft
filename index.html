@@ -49,7 +49,6 @@
     </div>
 
     <script>
-        // التوكن السري المستخرج من حسابك
         const HF_TOKEN = "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"; 
 
         async function generateAI() {
@@ -61,7 +60,6 @@
             document.getElementById('imageResult').style.display = 'none';
             
             try {
-                // دالة الاتصال المباشر والمعالجة السريعة بدون أي خوادم مدفوعة
                 const response = await fetch("https://huggingface.co", {
                     method: "POST",
                     headers: { 
