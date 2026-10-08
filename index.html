@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI VideoCraft | صانع الفيديوهات الذكي المجاني</title>
+    <meta name="description" content="توليد الفيديوهات والصور بالذكاء الاصطناعي مجاناً بالكامل بدون اشتراكات ومن سوريا.">
+    <meta name="keywords" content="Free AI video generator no subscription, best open source text to video AI, generate AI video with audio free, الذكاء الاصطناعي مجانا سوريا">
+    <style>
+        :root { --primary: #6366f1; --dark: #0f172a; --light: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark); color: var(--light); margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        header { width: 100%; padding: 20px; background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .container { max-width: 800px; width: 90%; margin: 40px auto; }
+        .ad-space { width: 100%; height: 90px; background: #1e293b; margin: 20px 0; display: flex; align-items: center; justify-content: center; border: 1px dashed #475569; color: #94a3b8; }
+        .input-box { background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.5); }
+        textarea { width: 100%; height: 100px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: white; padding: 10px; box-sizing: border-box; resize: none; font-size: 16px; text-align: right; }
+        .btn { background: var(--primary); color: white; border: none; padding: 12px 30px; font-size: 18px; border-radius: 6px; cursor: pointer; margin-top: 20px; transition: 0.3s; width: 100%; }
+        .btn:hover { background: #4f46e5; }
+        .output-box { margin-top: 30px; display: none; background: #1e293b; padding: 20px; border-radius: 12px; }
+        img { width: 100%; border-radius: 8px; border: 1px solid #475569; margin-top: 10px; }
+        .loading { display: none; color: #6366f1; font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎬 AI VideoCraft</h1>
+        <p>قم بإنشاء مقاطع وفيديوهات احترافية بالذكاء الاصطناعي مجاناً 24/7 من سوريا</p>
+    </header>
+
+    <div class="container">
+        <!-- مساحة إعلانات الكريبتو العلوية لتحقيق الأرباح بالعملات الرقمية -->
+        <div class="ad-space" id="ad-top">[Crypto Ad Banner Space - Revenue Generator]</div>
+
+        <div class="input-box">
+            <h2>اكتب الوصف (البرومبت) بالإنجليزية هنا:</h2>
+            <textarea id="promptInput" placeholder="اكتب وصفاً دقيقاً للمشهد الذي تريد توليده... (مثال: A cinematic shot of a futuristic city at sunset)"></textarea>
+            <button class="btn" onclick="generateAI()">توليد المحتوى مجاناً</button>
+            <div class="loading" id="loadingText">⏳ جاري معالجة طلبك سحابياً... يرجى الانتظار (10-25 ثانية)</div>
+        </div>
+
+        <div class="output-box" id="outputContainer">
+            <h3>المحتوى الذي تم توليده بنجاح:</h3>
+            <img id="imageResult" src="" alt="AI Output" style="display:none;"/>
+        </div>
+
+        <!-- مساحة الإعلانات السفلية لزيادة الأرباح الرقمية -->
+        <div class="ad-space" style="margin-top: 40px;" id="ad-bottom">[Crypto Ad Banner Space - Revenue Generator]</div>
+    </div>
+
+    <script>
+        // التوكن السري المستخرج من حسابك
+        const HF_TOKEN = "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"; 
+
+        async function generateAI() {
+            const prompt = document.getElementById('promptInput').value;
+            if(!prompt) { alert('الرجاء كتابة وصف أولاً!'); return; }
+            
+            document.getElementById('loadingText').style.display = 'block';
+            document.getElementById('outputContainer').style.display = 'none';
+            document.getElementById('imageResult').style.display = 'none';
+            
+            try {
+                // دالة الاتصال المباشر والمعالجة السريعة بدون أي خوادم مدفوعة
+                const response = await fetch("https://huggingface.co", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${HF_TOKEN}`
+                    },
+                    body: JSON.stringify({ inputs: prompt })
+                });
+                
+                if (!response.ok) throw new Error("السيرفر مشغول");
+                
+                const blob = await response.blob();
+                const outputUrl = URL.createObjectURL(blob);
+                
+                const imgElement = document.getElementById('imageResult');
+                imgElement.src = outputUrl;
+                imgElement.style.display = 'block';
+                document.getElementById('outputContainer').style.display = 'block';
+                
+            } catch (error) {
+                console.error(error);
+                alert("السيرفر العام مضغوط حالياً، يرجى الانتظار ثوانٍ وإعادة المحاولة.");
+            } finally {
+                document.getElementById('loadingText').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
